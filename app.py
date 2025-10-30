@@ -57,7 +57,7 @@ with st.spinner("🚀 Cargando modelo YOLOv5..."):
 
 # -------------------- CONFIGURACIÓN LATERAL --------------------
 if modelo:
-    st.sidebar.title("⚙️ Configuración del Detector")
+    st.sidebar.title("⚙️ Configuración del Analizador")
 
     with st.sidebar:
         st.subheader("🎯 Parámetros de detección")
