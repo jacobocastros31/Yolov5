@@ -8,8 +8,8 @@ import sys
 
 # -------------------- CONFIGURACIÓN DE LA PÁGINA --------------------
 st.set_page_config(
-    page_title="Detector Inteligente de Objetos",
-    page_icon="🧠",
+    page_title="Analizador de fotos",
+    page_icon="",
     layout="wide"
 )
 
@@ -45,9 +45,9 @@ def cargar_modelo_yolo(ruta_modelo='yolov5s.pt'):
         return None
 
 # -------------------- INTERFAZ PRINCIPAL --------------------
-st.title("🧠 Detección Inteligente de Objetos")
+st.title("Analizador de fotos")
 st.markdown("""
-Esta aplicación usa el modelo **YOLOv5** para detectar objetos en imágenes capturadas por tu cámara.  
+Esta aplicación detecta objetos en imágenes capturadas por tu cámara.  
 Ajusta los parámetros en el menú lateral para personalizar el proceso de detección.
 """)
 
@@ -75,7 +75,7 @@ if modelo:
     
     # -------------------- CAPTURA DE IMAGEN --------------------
     st.markdown("---")
-    st.subheader("📸 Captura o toma una imagen")
+    st.subheader("Captura o toma una foto")
 
     imagen_capturada = st.camera_input("Toma una fotografía para analizar")
 
@@ -101,12 +101,12 @@ if modelo:
             col1, col2 = st.columns(2)
 
             with col1:
-                st.subheader("📷 Imagen con detecciones")
+                st.subheader(" Imagen con detecciones")
                 resultados.render()
                 st.image(img_cv, channels='BGR', use_container_width=True)
 
             with col2:
-                st.subheader("📊 Objetos detectados")
+                st.subheader("Analisis Completo")
 
                 etiquetas = modelo.names
                 conteo = {}
@@ -129,13 +129,13 @@ if modelo:
                     st.dataframe(df, use_container_width=True)
                     st.bar_chart(df.set_index("Categoría")["Cantidad"])
                 else:
-                    st.info("No se detectaron objetos con los parámetros actuales.")
+                    st.info("Hay.")
                     st.caption("Sugerencia: baja el umbral de confianza para ampliar detecciones.")
 
         except Exception as e:
             st.error(f"❌ Error al procesar resultados: {str(e)}")
 else:
-    st.error("⚠️ No se pudo cargar el modelo. Verifica dependencias y vuelve a intentarlo.")
+    st.error("⚠️ No se pudo cargar la imagen. Verifica dependencias y vuelve a intentarlo.")
     st.stop()
 
 # -------------------- PIE DE PÁGINA --------------------
